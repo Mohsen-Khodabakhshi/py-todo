@@ -11,7 +11,7 @@ class ResponseStructure(BaseModel):
     status_code: int
 
 
-class Response(JSONResponse):
+class ResponseSchema(JSONResponse):
     def __init__(self, content: Any, status_code: int = status.HTTP_200_OK, *args, **kwargs) -> None:
         content = ResponseStructure(details=content, status_code=status_code).model_dump()
         super().__init__(content, status_code, *args, **kwargs)
@@ -21,41 +21,41 @@ class Message(BaseModel):
     message: str
 
 
-class Ok(BaseModel):
+class OkResponseSchema(BaseModel):
     details: Message = Message(message="Ok.")
     status_code: int = status.HTTP_200_OK
 
 
-class Created(BaseModel):
+class CreatedResponseSchema(BaseModel):
     details: Message = Message(message="Created successfully.")
     status_code: int = status.HTTP_201_CREATED
 
 
-class BadRequest(BaseModel):
+class BadRequestResponseSchema(BaseModel):
     details: Message = Message(message="Bad Request.")
     status_code: int = status.HTTP_400_BAD_REQUEST
 
 
-class Found(BaseModel):
+class FoundResponseSchema(BaseModel):
     details: Message = Message(message="Found.")
     status_code: int = status.HTTP_302_FOUND
 
 
-class NotFound(BaseModel):
+class NotFoundResponseSchema(BaseModel):
     details: Message = Message(message="Not found.")
     status_code: int = status.HTTP_404_NOT_FOUND
 
 
-class Conflict(BaseModel):
+class ConflictResponseSchema(BaseModel):
     details: Message = Message(message="Conflict.")
     status_code: int = status.HTTP_409_CONFLICT
 
 
-class Forbidden(BaseModel):
+class ForbiddenResponseSchema(BaseModel):
     details: Message = Message(message="Forbidden.")
     status_code: int = status.HTTP_403_FORBIDDEN
 
 
-class Unauthorized(BaseModel):
+class UnauthorizedResponseSchema(BaseModel):
     details: Message = Message(message="Unauthorized.")
     status_code: int = status.HTTP_401_UNAUTHORIZED

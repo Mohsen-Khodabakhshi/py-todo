@@ -1,10 +1,8 @@
 from fastapi import FastAPI
 
-from common.responses import Response
+from common.responses import ResponseSchema
+from core.router import initialize_routes
 
-app = FastAPI(default_response_class=Response)
+app = FastAPI(default_response_class=ResponseSchema)
 
-
-@app.get("/health")
-def health_check():
-    return {"message": "ok"}
+initialize_routes(app)
