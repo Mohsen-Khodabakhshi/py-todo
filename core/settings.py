@@ -6,6 +6,16 @@ class BaseSettings(PydanticBaseSettings):
         env_file = ".env"
 
 
+class AppSettings(BaseSettings):
+    secret_key: str = 'secret_key'
+
+    class Config:
+        env_prefix = "APP_"
+
+
+app_settings = AppSettings()
+
+
 class DatabaseSettings(BaseSettings):
     username: str = 'postgres'
     password: str = 'postgres'
@@ -18,3 +28,14 @@ class DatabaseSettings(BaseSettings):
 
 
 database_settings = DatabaseSettings()
+
+
+class JWTSettings(BaseSettings):
+    algorithm: str = 'HS256'
+    access_token_expire_minutes = 525600
+
+    class Config:
+        env_prefix = "JWT_"
+
+
+jwt_settings = JWTSettings()
