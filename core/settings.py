@@ -32,7 +32,7 @@ database_settings = DatabaseSettings()
 
 class JWTSettings(BaseSettings):
     algorithm: str = 'HS256'
-    access_token_expire_minutes = 525600
+    access_token_expire_minutes: int = 525600
 
     class Config:
         env_prefix = "JWT_"

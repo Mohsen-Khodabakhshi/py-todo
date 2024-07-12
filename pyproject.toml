@@ -10,10 +10,16 @@ readme = "README.md"
 python = "^3.10"
 fastapi = "^0.111.0"
 tortoise-orm = {extras = ["asyncpg"], version = "^0.21.4"}
-pydantic-settings = "^2.3.4"
+pydantic-settings = "2.1.0"
 pyjwt = "^2.8.0"
+aerich = "^0.7.2"
 
 
+
+[tool.aerich]
+tortoise_orm = "services.database.connection.TORTOISE_ORM"
+location = "./migrations"
+src_folder = "./."
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
