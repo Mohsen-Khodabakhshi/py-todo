@@ -44,3 +44,6 @@ class JWTHandler:
             )
         except KeyError:
             raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST)
+
+
+jwt_handler = JWTHandler()

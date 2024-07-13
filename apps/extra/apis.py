@@ -1,6 +1,7 @@
 from fastapi import APIRouter
 
 extra_router = APIRouter(
+    tags=['Extra'],
     prefix="",
 )
 

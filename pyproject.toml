@@ -13,6 +13,8 @@ tortoise-orm = {extras = ["asyncpg"], version = "^0.21.4"}
 pydantic-settings = "2.1.0"
 pyjwt = "^2.8.0"
 aerich = "^0.7.2"
+pydantic = {extras = ["email"], version = "^2.8.2"}
+cryptography = "^42.0.8"
 
 
 

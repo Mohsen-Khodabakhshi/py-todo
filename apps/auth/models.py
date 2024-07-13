@@ -8,7 +8,7 @@ class User(BaseModel):
     password = fields.CharField(max_length=255)
     email = fields.CharField(max_length=255, unique=True)
     name = fields.CharField(max_length=64, null=True)
-    avatar = fields.CharField(max_length=255)
+    avatar = fields.CharField(max_length=255, null=True)
     last_login = fields.DatetimeField(null=True)
 
     def __str__(self) -> str:
