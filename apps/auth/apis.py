@@ -1,7 +1,8 @@
-from fastapi import APIRouter, status
+from fastapi import APIRouter, Depends, status
 
 from apps.auth.controllers import auth_controller
-from apps.auth.schemas import UserRegisterIn, UserRegisterOut, UserLoginIn, UserLoginOut
+from apps.auth.schemas import UserRegisterIn, UserRegisterOut, UserLoginIn, UserLoginOut, UserProfileOut
+from apps.auth.dependencies import validate_user
 
 auth_router = APIRouter(
     tags=['Authentication'],
@@ -25,3 +26,12 @@ async def register(data: UserRegisterIn):
 )
 async def login(data: UserLoginIn):
     return await auth_controller.login(data=data)
+
+
+@auth_router.get(
+    "/profile",
+    response_model=UserProfileOut,
+    status_code=status.HTTP_200_OK,
+)
+async def profile(user=Depends(validate_user)):
+    return await auth_controller.profile(user=user)
