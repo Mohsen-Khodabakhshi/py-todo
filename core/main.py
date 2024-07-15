@@ -1,10 +1,12 @@
 from fastapi import FastAPI
 
-from common.responses import ResponseSchema
+from middlewares.response_handler import response_handler_middleware
 from core.router import initialize_routes
 from core import events
 
-app = FastAPI(default_response_class=ResponseSchema)
+app = FastAPI()
+
+response_handler_middleware(app)
 
 events.database_events_handler(app=app)
 
