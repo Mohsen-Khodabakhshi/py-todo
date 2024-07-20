@@ -38,7 +38,7 @@ class UserProfileOut(BaseModel):
     last_login: datetime | None = None
 
 
-class UserLoginIn(PasswordModel):
+class UserLoginIn(BaseModel):
     username: str
     password: str
 
