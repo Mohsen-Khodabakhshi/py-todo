@@ -1,3 +1,5 @@
+import random
+
 from tortoise import fields
 
 from common.models import BaseModel
@@ -13,6 +15,15 @@ class Project(BaseModel):
         related_name='projects',
         on_delete=fields.CASCADE
     )
+
+    async def slug_generator(self):
+        slug = self.title
+        generator = lambda s: s + str(random.randint(1, 9))
+        while True:
+            if not await Project.get_or_none(slug=slug):
+                break
+            slug = generator(slug)
+        return slug
 
     def __str__(self) -> str:
         return f'{self.owner} - {self.title}'
