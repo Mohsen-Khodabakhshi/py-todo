@@ -19,9 +19,7 @@ class Project(BaseModel):
     async def slug_generator(self):
         slug = self.title
         generator = lambda s: s + str(random.randint(1, 9))
-        while True:
-            if not await Project.get_or_none(slug=slug):
-                break
+        while await Project.get_or_none(slug=slug):
             slug = generator(slug)
         return slug
 
