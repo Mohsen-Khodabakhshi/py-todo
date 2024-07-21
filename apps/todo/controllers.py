@@ -14,7 +14,7 @@ class TodoController:
                 detail="Project with this title is exist."
             )
         project = Project(owner=user, **data.dict())
-        project.slug = await project.slug_generator()
+        project.slug = await project.unique_string_value_generator(field_name='slug', value=data.title)
         await project.save()
         return project
 
